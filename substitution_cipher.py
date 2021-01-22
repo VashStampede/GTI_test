@@ -1,10 +1,4 @@
 def encrypt(text, n):
-    if len(text) == 0 or not text:
-        return text
-
-    if n <= 0:
-        return text
-
     i = 0
     while i < n:
         evens  = "".join(text[index].lower() for index in range(1, len(text), 2))
@@ -19,27 +13,27 @@ def encrypt(text, n):
 
 def decrypt(encrypted_text, n):
     i = 0
-    
     while i < n:
         middle = int(len(encrypted_text) / 2)
         first_part = encrypted_text[:middle]
         second_part = encrypted_text[middle:]
 
-        text = ""
+        resulted_text = ""
+
         pairs = zip(second_part, first_part)
 
         for pair in pairs:
-            text += pair[0] + pair[1]
+            resulted_text += pair[0] + pair[1]
 
         if len(encrypted_text) & 1:
-            text += second_part[-1]
+            resulted_text += second_part[-1]
         i +=1
 
-        encrypted_text = text
+        encrypted_text = resulted_text
 
-    decrypted_text = text
+    decrypted_text = resulted_text
     print("Decripted text: ", decrypted_text)
-    return text
+    return decrypted_text
 
 
 text = input("Enter text: ")
